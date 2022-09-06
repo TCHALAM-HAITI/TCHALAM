@@ -73,7 +73,7 @@ TCHALAM is a preparation application for graduating students to better address u
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="Tchalam.jpg" width=600>
+<img src="Tchalam.jpeg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
