@@ -13,7 +13,7 @@ TCHALAM is a preparation application for graduating students to better address u
 - **Category:** Educatif
 - **Mobile:** This application is mainly developed for mobiles in order to properly address the exams for university admission
 - **Story:** TCHALAM is an online prefact application where all graduating students can prepare quizzes for the university admission exam.
-- **Market:** 
+- **Market:** All graduating students who intend to integrate public and private universities can use the application
 - **Habit:** This application can be used as often or rarely as the user wishes depending on subject to be prepared.
 - **Scope:**
 
@@ -39,6 +39,8 @@ TCHALAM is a preparation application for graduating students to better address u
    * User can login
 * Register
    * User can register a new account
+* Stream
+    * user can see the list of exam subjects
 * Choose Subject
     * User can choose a exam subject
 * Quiz
@@ -50,18 +52,24 @@ TCHALAM is a preparation application for graduating students to better address u
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Stream
+* Profile
+* Quiz
 
 **Flow Navigation** (Screen to Screen)
 
-* [list first screen here]
-   * [list screen navigation here]
-   * ...
-* [list second screen here]
-   * [list screen navigation here]
-   * ...
+* Login
+   * Stream
+* Register
+   * Stream
+* Stream
+    * Detail
+* Choose Subject
+    * Stream
+* Quiz
+    * Quiz
+* Profile
+    * Detail
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
