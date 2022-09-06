@@ -15,7 +15,7 @@ TCHALAM is a preparation application for graduating students to better address u
 - **Story:** TCHALAM is an online prefact application where all graduating students can prepare quizzes for the university admission exam.
 - **Market:** All graduating students who intend to integrate public and private universities can use the application
 - **Habit:** This application can be used as often or rarely as the user wishes depending on subject to be prepared.
-- **Scope:**
+- **Scope:** 
 
 ## Product Spec
 
@@ -32,6 +32,7 @@ TCHALAM is a preparation application for graduating students to better address u
 **Optional Nice-to-have Stories**
 
 * Advanced Quiz
+* Score Sharing
 
 ### 2. Screen Archetypes
 
