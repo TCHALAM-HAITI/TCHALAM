@@ -31,7 +31,7 @@ TCHALAM is a preparation application for graduating students to better address u
 
 **Optional Nice-to-have Stories**
 
-* Advenced Quiz
+* Advanced Quiz
 
 ### 2. Screen Archetypes
 
