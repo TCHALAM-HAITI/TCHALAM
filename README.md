@@ -122,7 +122,7 @@ Model: Answer
 | ObjectId  | String   | Unique id for User account            |
 | createdAt | DateTime | date created user (default field)     |
 | updatedAt | DateTime | date last updated user (default field)|
-| quizId	| Pointer  | Pointer to Quiz					   |
+| quiz	| Pointer  | Pointer to Quiz					   |
 | user      | Pointer  | Pointer to User 					   |
 
 ### Networking
