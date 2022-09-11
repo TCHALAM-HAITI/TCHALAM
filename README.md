@@ -4,6 +4,7 @@
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
+1. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -75,6 +76,56 @@ TCHALAM is a preparation application for graduating students to better address u
 ## Wireframes
 <img src="https://i.imgur.com/cIVfGcF.jpg" width=600>
 
+### [BONUS] Digital Wireframes & Mockups
+
+### [BONUS] Interactive Prototype
+
+## Schema 
+
+### Models
+Model: User
+
+| Property  | Type     | Description                            |
+| --------- | -------- | -------------------------------------- |
+| ObjectId  | String   | Unique id for User account             |
+| createdAt | DateTime | date created user (default field)      |
+| updatedAt | DateTime | date last updated user (default field) |
+| lastname  | String   | name of the user                       |
+| firstname | String   | first name of the user                 |
+| email     | String   | email of the user                      |
+| password  | String   | Password of the user                   |
+
+Model: Subject
+
+| Property  | Type     | Description                           |
+| --------  | -------- | --------------------------            |
+| ObjectId  | String   | Unique id for subject            |
+| createdAt | DateTime | date created user (default field)     |
+| updatedAt | DateTime | date last updated user (default field)|
+| subject   | String   | Subject 							   | 
 
 
+Model: Quiz
 
+| Property  | Type     | Description                           |
+| --------  | -------- | --------------------------            |
+| ObjectId  | String   | Unique id for User account            |
+| createdAt | DateTime | date created user (default field)     |
+| updatedAt	| DateTime | date last updated user (default field)|
+| quiz      | String   | Question about a subject              |
+| subject | Pointer  | Pointer to Subject                    |
+
+Model: Answer
+
+| Property  | Type     | Description                           |
+| --------  | -------- | --------------------------            |
+| ObjectId  | String   | Unique id for User account            |
+| createdAt | DateTime | date created user (default field)     |
+| updatedAt | DateTime | date last updated user (default field)|
+| quizId	| Pointer  | Pointer to Quiz					   |
+| user      | Pointer  | Pointer to User 					   |
+
+### Networking
+- [Add list of network requests by screen ]
+- [Create basic snippets for each Parse network request]
+- [OPTIONAL: List endpoints if using existing API such as Yelp]
