@@ -99,9 +99,10 @@ Model: Subject
 
 | Property  | Type     | Description                           |
 | --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for subject            |
-| createdAt | DateTime | date created user (default field)     |
-| updatedAt | DateTime | date last updated user (default field)|
+| ObjectId  | String   | Unique id for subject 
+ Name  | String   | Name of the subject
+|
+|
 | subject   | String   | Subject 							   | 
 
 
@@ -109,9 +110,9 @@ Model: Quiz
 
 | Property  | Type     | Description                           |
 | --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for User account            |
-| createdAt | DateTime | date created user (default field)     |
-| updatedAt	| DateTime | date last updated user (default field)|
+| ObjectId  | String   | Unique id for Quiz            |
+| createdAt | DateTime | date created quiz (default field)     |
+| updatedAt	| DateTime | date last updated quiz (default field)|
 | quiz      | String   | Question about a subject              |
 | subject | Pointer  | Pointer to Subject                    |
 
@@ -119,9 +120,9 @@ Model: Answer
 
 | Property  | Type     | Description                           |
 | --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for User account            |
-| createdAt | DateTime | date created user (default field)     |
-| updatedAt | DateTime | date last updated user (default field)|
+| ObjectId  | String   | Unique id for Answer            |
+| createdAt | DateTime | date created answer (default field)     |
+| updatedAt | DateTime | date last updated anser (default field)|
 | quiz	| Pointer  | Pointer to Quiz					   |
 | user      | Pointer  | Pointer to User 					   |
 
