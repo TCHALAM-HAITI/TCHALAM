@@ -85,48 +85,61 @@ TCHALAM is a preparation application for graduating students to better address u
 ### Models
 Model: User
 
-| Property  | Type     | Description                            |
-| --------- | -------- | -------------------------------------- |
-| ObjectId  | String   | Unique id for User account             |
-| createdAt | DateTime | date created user (default field)      |
-| updatedAt | DateTime | date last updated user (default field) |
-| lastname  | String   | name of the user                       |
-| firstname | String   | first name of the user                 |
-| email     | String   | email of the user                      |
-| password  | String   | Password of the user                   |
+| Property  | Type     | Description                               		|
+| --------- | -------- | ---------------------------------------------- |
+| ObjectId  | String   | Unique id for User account                		|
+| createdAt | Datetime | date when post is created (default field)     	|
+| updatedAt | Datetime | date when post is last updated (default field)	|
+| lastname  | String   | name of the user                          		|
+| firstname | String   | first name of the user                    		|
+| email     | String   | email of the user                         		|
+| password  | String   | Password of the user                      		|
 
 Model: Subject
 
-| Property  | Type     | Description                           |
-| --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for subject 
- Name  | String   | Name of the subject
-|
-|
-| subject   | String   | Subject 							   | 
+| Property  | Type     | Description                           			|
+| --------  | -------- | ---------------------------------------------- |
+| ObjectId  | String   | Unique id for subject                 			|
+| createdAt | Datetime | date when post is created (default field)     	|
+| updatedAt | Datetime | date when post is last updated (default field)	|
+| Name      | String   | Name of the subject                   			|
+| subject   | String   | Subject 							   			| 
 
 
 Model: Quiz
 
-| Property  | Type     | Description                           |
-| --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for Quiz            |
-| createdAt | DateTime | date created quiz (default field)     |
-| updatedAt	| DateTime | date last updated quiz (default field)|
-| quiz      | String   | Question about a subject              |
-| subject | Pointer  | Pointer to Subject                    |
+| Property    | Type     | Description                           		 |
+| --------    | -------- | --------------------------------------------  |
+| ObjectId    | String   | Unique id for Quiz            		 		 |
+| createdAt   | Datetime | date when post is created (default field)     |
+| updatedAt   | Datetime | date when post is last updated (default field)|
+| Choicelist  | String   | Choicelist of quiz    				 		 |
+| AnswerIndex | Int      | AnswerIndex of quiz 					 		 |
+| quiz        | String   | Question about a subject              		 |
+| subject     | Pointer  | Pointer to Subject                    		 |
 
 Model: Answer
 
-| Property  | Type     | Description                           |
-| --------  | -------- | --------------------------            |
-| ObjectId  | String   | Unique id for Answer            |
-| createdAt | DateTime | date created answer (default field)     |
-| updatedAt | DateTime | date last updated anser (default field)|
-| quiz	| Pointer  | Pointer to Quiz					   |
-| user      | Pointer  | Pointer to User 					   |
+| Property  | Type     | Description                          			 |
+| --------  | -------- | ----------------------------------------------- |
+| ObjectId  | String   | Unique id for Answer            	   			 |
+| createdAt | Datetime | date when post is created (default field)     	 |
+| updatedAt | Datetime | date when post is last updated (default field)  |
+| quiz	    | Pointer  | Pointer to Quiz					   			 |
+| user      | Pointer  | Pointer to User 					             |
+| score 	| Int	   | Score for a quiz					             |
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+- Login Screen
+	- (Read/GET) Query logged in user object
+- Profile Screen
+	- Read/GET) Query that displays the profile of the user on the application.
+- Sign in Screen
+	- (Create/POST) Create a new user object
+	- (Read/GET) Query that checks if entered email already exists in database.
+- Home Screen
+	- (Read/GET) Query get list Subject
+- Quiz Screen
+	- (Read/GET) Query get list quiz for a Subject
+	- (Create/POST) Answer for a quiz 
+	
