@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TCHALAM</string>
+    <string name="tchalam">TCHALAM</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de Passe</string>
+    <string name="login">Connexion</string>
+    <string name="sing_up">Creer</string>
+    <string name="if_you_don_t_have_an_account">Si vous n\'avez pas de compte</string>
+    <string name="name">Nom</string>
+    <string name="lastname">Prenom</string>
+    <string name="cr_er">Créer</string>
 </resources>
