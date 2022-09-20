@@ -9,4 +9,6 @@
     <string name="name">Nom</string>
     <string name="lastname">Prenom</string>
     <string name="cr_er">Créer</string>
+    <string name="user">User</string>
+    <string name="deconnecter">Deconnecter</string>
 </resources>

@@ -83,7 +83,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser object, ParseException e1) {
                 if (e1 != null) {
-                    Toast.makeText(LoginActivity.this, "Erreur " + e1.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, "Erreur " + e1.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "done: "+e1.getMessage(),e1);
                     return;
                 }
                 String username = object.getUsername();
@@ -94,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (user != null) {
                             goMainActivity();
                         } else {
+                            Toast.makeText(LoginActivity.this, "Échec de la connexion", Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "Échec de la connexion: " + e2.getMessage(), e2);
                         }
                     }
