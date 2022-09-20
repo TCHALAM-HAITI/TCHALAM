@@ -143,4 +143,8 @@ Model: Answer
 	- (Read/GET) Query get list quiz for a Subject
 	- (Create/POST) Answer for a quiz 
 	
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+	
 <img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
