@@ -143,3 +143,4 @@ Model: Answer
 	- (Read/GET) Query get list quiz for a Subject
 	- (Create/POST) Answer for a quiz 
 	
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
