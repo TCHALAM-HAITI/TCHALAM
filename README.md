@@ -23,17 +23,17 @@ TCHALAM is a preparation application for graduating students to better address u
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* User can Register a new Account
-* User can Login
-* The user can choose a subject to prepare.
-* The user can take quizzes for a subject
-* Profile
+- [x] User can Register a new Account
+- [x] User can Login
+- [ ] The user can choose a subject to prepare.
+- [ ] The user can take quizzes for a subject
+- [ ] Profile
 
 
 **Optional Nice-to-have Stories**
 
-* Advanced Quiz
-* Score Sharing
+- [ ] Advanced Quiz
+- [ ] Score Sharing
 
 ### 2. Screen Archetypes
 
@@ -143,3 +143,4 @@ Model: Answer
 	- (Read/GET) Query get list quiz for a Subject
 	- (Create/POST) Answer for a quiz 
 	
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
