@@ -11,4 +11,13 @@
     <string name="cr_er">Créer</string>
     <string name="user">User</string>
     <string name="deconnecter">Deconnecter</string>
+    <string name="home">Home</string>
+    <string name="quiz">Quiz</string>
+    <string name="profile">Profile</string>
+    <string name="todo">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subject">Subject</string>
+    <string name="choisir_un_sujet">Choisir un Sujet</string>
+    <string name="choix_d_un_sujet">Choix d\'un Sujet</string>
 </resources>
