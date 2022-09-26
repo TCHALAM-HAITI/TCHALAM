@@ -25,7 +25,7 @@ TCHALAM is a preparation application for graduating students to better address u
 **Required Must-have Stories**
 - [x] User can Register a new Account
 - [x] User can Login
-- [ ] The user can choose a subject to prepare.
+- [x] The user can choose a subject to prepare.
 - [ ] The user can take quizzes for a subject
 - [ ] Profile
 
