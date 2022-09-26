@@ -3,6 +3,8 @@ package com.mypath.tchalam;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +13,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mypath.tchalam.fragments.ProfileFragment;
+import com.mypath.tchalam.fragments.QuizFragment;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +30,24 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+
                 switch (item.getItemId()) {
                     case R.id.action_quiz:
-                        Toast.makeText(MainActivity.this, "Quiz", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Quiz", Toast.LENGTH_SHORT).show();
+                        fragment = new QuizFragment();
                         break;
                     case R.id.action_profile:
                     default:
-                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        fragment = new ProfileFragment();
                         break;
                 }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.action_quiz);
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = findViewById(R.id.toolbar);
