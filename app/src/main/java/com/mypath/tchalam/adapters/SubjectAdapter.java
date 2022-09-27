@@ -1,5 +1,6 @@
 package com.mypath.tchalam.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mypath.tchalam.QuestionActivity;
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.models.Subject;
 
@@ -38,7 +40,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         holder.card_subject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(holder.itemView.getContext(), subject.getSubject(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(holder.itemView.getContext(), subject.getSubject(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(holder.itemView.getContext(), QuestionActivity.class);
+                i.putExtra("subjectname",subject.getSubject());
+                holder.itemView.getContext().startActivity(i);
             }
         });
     }
