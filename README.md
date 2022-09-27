@@ -108,15 +108,18 @@ Model: Subject
 
 Model: Quiz
 
-| Property    | Type     | Description                           		 |
-| --------    | -------- | --------------------------------------------  |
-| ObjectId    | String   | Unique id for Quiz            		 		 |
-| createdAt   | Datetime | date when post is created (default field)     |
-| updatedAt   | Datetime | date when post is last updated (default field)|
-| Choicelist  | String   | Choicelist of quiz    				 		 |
-| AnswerIndex | Int      | AnswerIndex of quiz 					 		 |
-| quiz        | String   | Question about a subject              		 |
-| subject     | Pointer  | Pointer to Subject                    		 |
+| Property  | Type     | Description                                    |
+| --------- | -------- | ---------------------------------------------- |
+| ObjectId  | String   | Unique id for Quiz                             |
+| createdAt | Datetime | date when post is created (default field)      |
+| updatedAt | Datetime | date when post is last updated (default field) |
+| question  | String   | question about a subject                       |
+| A         | String   | option answer 1                                |
+| B         | String   | option answer 2                                |
+| C         | String   | option answer 3                                |
+| D         | String   | option answer 4                                |
+| answer    | Int      | number of the Correct Answer                   |
+| subject   | Pointer  | Pointer to Subject                             |
 
 Model: Answer
 
