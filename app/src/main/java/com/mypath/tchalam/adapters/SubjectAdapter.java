@@ -8,11 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mypath.tchalam.QuestionActivity;
 import com.mypath.tchalam.R;
+import com.mypath.tchalam.fragments.QuestionFragment;
 import com.mypath.tchalam.models.Subject;
 
 import java.util.List;
@@ -41,9 +43,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
             @Override
             public void onClick(View view) {
 //                Toast.makeText(holder.itemView.getContext(), subject.getSubject(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(holder.itemView.getContext(), QuestionActivity.class);
-                i.putExtra("subjectname",subject.getSubject());
-                holder.itemView.getContext().startActivity(i);
+//                Intent i = new Intent(holder.itemView.getContext(), QuestionActivity.class);
+//                i.putExtra("subjectname",subject.getSubject());
+//                holder.itemView.getContext().startActivity(i);
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,QuestionFragment.newInstance(subject.getSubject())).addToBackStack(null).commit();
+
             }
         });
     }

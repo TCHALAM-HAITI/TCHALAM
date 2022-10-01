@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
-        });
+        }); 
         bottomNavigationView.setSelectedItemId(R.id.action_quiz);
 
         // Find the toolbar view inside the activity layout
