@@ -26,7 +26,7 @@ TCHALAM is a preparation application for graduating students to better address u
 - [x] User can Register a new Account
 - [x] User can Login
 - [x] The user can choose a subject to prepare.
-- [ ] The user can take quizzes for a subject
+- [x] The user can take quizzes for a subject
 - [ ] Profile
 
 
@@ -150,4 +150,4 @@ Model: Answer
 
 Here's a walkthrough of implemented user stories:
 	
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='XRecorder_03102022_190919%20(1).gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
