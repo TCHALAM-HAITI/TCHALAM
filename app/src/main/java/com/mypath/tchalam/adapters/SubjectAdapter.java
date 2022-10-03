@@ -1,18 +1,16 @@
 package com.mypath.tchalam.adapters;
 
-import android.content.Intent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mypath.tchalam.QuestionActivity;
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.fragments.QuestionFragment;
 import com.mypath.tchalam.models.Subject;
@@ -21,7 +19,7 @@ import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder>  {
 
-    private List<Subject> subjects;
+    private final List<Subject> subjects;
 
     public SubjectAdapter(List<Subject> subjects) {
         this.subjects = subjects;
@@ -42,10 +40,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         holder.card_subject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(holder.itemView.getContext(), subject.getSubject(), Toast.LENGTH_SHORT).show();
-//                Intent i = new Intent(holder.itemView.getContext(), QuestionActivity.class);
-//                i.putExtra("subjectname",subject.getSubject());
-//                holder.itemView.getContext().startActivity(i);
+
+
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,QuestionFragment.newInstance(subject.getSubject())).addToBackStack(null).commit();
 
@@ -58,7 +54,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
         return subjects.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvSubject;
         CardView card_subject;
 

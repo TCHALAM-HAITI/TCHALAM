@@ -1,5 +1,6 @@
 package com.mypath.tchalam.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,8 +19,8 @@ import android.widget.TextView;
 
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.adapters.QuestionAdapter;
-import com.mypath.tchalam.adapters.SubjectAdapter;
 import com.mypath.tchalam.models.Question;
+import com.mypath.tchalam.models.Subject;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -27,6 +28,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +45,6 @@ public class QuestionFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
 
-    private TextView tvSubjectName;
     private TextView tvQuestionID;
     private RecyclerView rvQuestion;
     private List<Question> allQuestion;
@@ -81,7 +82,7 @@ public class QuestionFragment extends Fragment {
         }
 
         quesID = 0;
-        tvSubjectName = view.findViewById(R.id.tvSubject_Name);
+        TextView tvSubjectName = view.findViewById(R.id.tvSubject_Name);
         tvSubjectName.setText(mParam1);
 
         tvQuestionID = view.findViewById(R.id.tvQuestionID);
@@ -98,8 +99,6 @@ public class QuestionFragment extends Fragment {
         rvQuestion.setLayoutManager(linearLayoutManager);
 
         queryQuestion();
-
-
         setSnapHelper();
     }
 
@@ -108,14 +107,16 @@ public class QuestionFragment extends Fragment {
 
         snapHelper.attachToRecyclerView(rvQuestion);
         rvQuestion.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
-                quesID = recyclerView.getLayoutManager().getPosition(view);
+                assert view != null;
+                quesID = Objects.requireNonNull(recyclerView.getLayoutManager()).getPosition(view);
 
-                tvQuestionID.setText(String.valueOf(quesID+1)+"/"+String.valueOf(allQuestion.size()));
+                tvQuestionID.setText(quesID + 1 +"/"+ allQuestion.size());
             }
 
             @Override
@@ -126,11 +127,16 @@ public class QuestionFragment extends Fragment {
     }
 
     private void queryQuestion() {
-        ParseQuery<Question> query = ParseQuery.getQuery(Question.class);
-        query.include(Question.KEY_SUBJECT);
-        query.setLimit(20);
+        ParseQuery<Subject> subjectQuery = ParseQuery.getQuery(Subject.class);
+        subjectQuery.whereEqualTo("Subject", mParam1);
 
-        query.findInBackground(new FindCallback<Question>() {
+        ParseQuery<Question> questionQuery = ParseQuery.getQuery(Question.class);
+
+        questionQuery.whereMatchesQuery("subject",subjectQuery);
+        questionQuery.include(Question.KEY_SUBJECT);
+
+        questionQuery.findInBackground(new FindCallback<Question>() {
+            @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
             @Override
             public void done(List<Question> questions, ParseException e) {
                 if (e != null) {
@@ -140,13 +146,11 @@ public class QuestionFragment extends Fragment {
                 for (Question question : questions) {
                     Log.i(TAG, "Question: " + question.getQuestion());
                 }
-                tvQuestionID.setText("1/"+String.valueOf(questions.size()));
+                tvQuestionID.setText("1/"+ questions.size());
                 allQuestion.addAll(questions);
                 adapter.notifyDataSetChanged();
             }
         });
-
-
     }
 
 
