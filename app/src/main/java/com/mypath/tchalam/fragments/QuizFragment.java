@@ -1,5 +1,6 @@
 package com.mypath.tchalam.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.adapters.SubjectAdapter;
@@ -28,7 +28,6 @@ import java.util.List;
 public class QuizFragment extends Fragment {
     public static final String TAG = "QuizFragment";
 
-    private RecyclerView rvSubject;
     private List<Subject> allSubject;
     private SubjectAdapter adapter;
 
@@ -40,7 +39,7 @@ public class QuizFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvSubject = view.findViewById(R.id.rvSubject);
+        RecyclerView rvSubject = view.findViewById(R.id.rvSubject);
 
         allSubject = new ArrayList<>();
 
@@ -61,6 +60,7 @@ public class QuizFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_quiz, container, false);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     protected void querySubject() {
         ParseQuery<Subject> query = ParseQuery.getQuery(Subject.class);
         query.setLimit(20);
