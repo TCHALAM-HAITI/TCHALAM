@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.mypath.tchalam.R;
@@ -46,6 +47,9 @@ public class QuestionFragment extends Fragment {
     private String mParam1;
 
     private TextView tvQuestionID;
+    private Button bt_prev;
+    private Button bt_next;
+    private Button bt_submit;
     private RecyclerView rvQuestion;
     private List<Question> allQuestion;
     private QuestionAdapter adapter;
@@ -83,6 +87,18 @@ public class QuestionFragment extends Fragment {
 
         quesID = 0;
         TextView tvSubjectName = view.findViewById(R.id.tvSubject_Name);
+        bt_prev = view.findViewById(R.id.bt_prev);
+        bt_next = view.findViewById(R.id.bt_next);
+        bt_submit = view.findViewById(R.id.bt_submit);
+
+        bt_prev.setVisibility(View.INVISIBLE);
+        bt_next.setVisibility(View.INVISIBLE);
+        bt_submit.setVisibility(View.INVISIBLE);
+
+        if (quesID == 0)
+            bt_next.setVisibility(View.VISIBLE);
+
+
         tvSubjectName.setText(mParam1);
 
         tvQuestionID = view.findViewById(R.id.tvQuestionID);
@@ -100,6 +116,61 @@ public class QuestionFragment extends Fragment {
 
         queryQuestion();
         setSnapHelper();
+        setClickListener();
+    }
+
+    private void setClickListener() {
+        bt_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick Next: "+quesID);
+                if (quesID == 0) {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.INVISIBLE);
+                } else if (quesID == allQuestion.size() - 1) {
+                    bt_submit.setVisibility(View.VISIBLE);
+                    bt_next.setVisibility(View.INVISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                } else {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                }
+                rvQuestion.smoothScrollToPosition(quesID + 1);
+            }
+        });
+
+        bt_prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick Prev: "+quesID);
+
+                if (quesID == 0) {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.INVISIBLE);
+                } else if (quesID == allQuestion.size() - 1) {
+                    bt_submit.setVisibility(View.VISIBLE);
+                    bt_next.setVisibility(View.INVISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                } else {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                }
+
+                if (quesID > 0)
+                    rvQuestion.smoothScrollToPosition(quesID - 1);
+            }
+        });
+
+        bt_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void setSnapHelper() {
@@ -114,9 +185,25 @@ public class QuestionFragment extends Fragment {
 
                 View view = snapHelper.findSnapView(recyclerView.getLayoutManager());
                 assert view != null;
-                quesID = Objects.requireNonNull(recyclerView.getLayoutManager()).getPosition(view);
 
-                tvQuestionID.setText(quesID + 1 +"/"+ allQuestion.size());
+                quesID = Objects.requireNonNull(recyclerView.getLayoutManager()).getPosition(view);
+                Log.i(TAG, "onScrollStateChanged: " + quesID);
+
+                tvQuestionID.setText(quesID + 1 + "/" + allQuestion.size());
+
+                if (quesID == 0) {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.INVISIBLE);
+                } else if (quesID == allQuestion.size() - 1) {
+                    bt_submit.setVisibility(View.VISIBLE);
+                    bt_next.setVisibility(View.INVISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                } else {
+                    bt_submit.setVisibility(View.INVISIBLE);
+                    bt_next.setVisibility(View.VISIBLE);
+                    bt_prev.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -132,7 +219,7 @@ public class QuestionFragment extends Fragment {
 
         ParseQuery<Question> questionQuery = ParseQuery.getQuery(Question.class);
 
-        questionQuery.whereMatchesQuery("subject",subjectQuery);
+        questionQuery.whereMatchesQuery("subject", subjectQuery);
         questionQuery.include(Question.KEY_SUBJECT);
 
         questionQuery.findInBackground(new FindCallback<Question>() {
@@ -146,7 +233,7 @@ public class QuestionFragment extends Fragment {
                 for (Question question : questions) {
                     Log.i(TAG, "Question: " + question.getQuestion());
                 }
-                tvQuestionID.setText("1/"+ questions.size());
+                tvQuestionID.setText(quesID + 1 + "/" + questions.size());
                 allQuestion.addAll(questions);
                 adapter.notifyDataSetChanged();
             }
