@@ -5,22 +5,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mypath.tchalam.R;
-import com.mypath.tchalam.models.Question;
+import com.mypath.tchalam.models.Quiz;
 
 
 import java.util.List;
 
-public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
-    private final List<Question> questions;
+public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
+    private final List<Quiz> quizzes;
 
-    public QuestionAdapter(List<Question> questions) {
-        this.questions = questions;
+    public QuizAdapter(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
     @NonNull
@@ -32,14 +31,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Question question = questions.get(position);
-        int answer = question.getAnswer();
+        Quiz quiz = quizzes.get(position);
+        int answer = quiz.getAnswer();
 
-        holder.tvQuestion.setText(question.getQuestion());
-        holder.btOptionA.setText(question.getOptionA());
-        holder.btOptionB.setText(question.getOptionB());
-        holder.btOptionC.setText(question.getOptionC());
-        holder.btOptionD.setText(question.getOptionD());
+        holder.tvQuestion.setText(quiz.getQuestion());
+        holder.btOptionA.setText(quiz.getOptionA());
+        holder.btOptionB.setText(quiz.getOptionB());
+        holder.btOptionC.setText(quiz.getOptionC());
+        holder.btOptionD.setText(quiz.getOptionD());
 
         holder.btOptionA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +84,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return questions.size();
+        return quizzes.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -10,11 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mypath.tchalam.fragments.ProfileFragment;
-import com.mypath.tchalam.fragments.QuizFragment;
+import com.mypath.tchalam.fragments.SubjectFragment;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_quiz:
 //                        Toast.makeText(MainActivity.this, "Quiz", Toast.LENGTH_SHORT).show();
-                        fragment = new QuizFragment();
+                        fragment = new SubjectFragment();
                         break;
                     case R.id.action_profile:
                     default:

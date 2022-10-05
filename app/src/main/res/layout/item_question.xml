@@ -14,7 +14,7 @@
         android:background="@android:color/white"
         android:elevation="5dp"
         android:gravity="center"
-        android:hint="@string/question"
+        android:hint="@string/quiz"
         android:padding="8dp"
         android:scrollbars="vertical"
         android:textColor="@android:color/black"

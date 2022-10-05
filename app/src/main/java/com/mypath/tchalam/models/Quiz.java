@@ -4,7 +4,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 @ParseClassName("Quiz")
-public class Question extends ParseObject {
+public class Quiz extends ParseObject {
     public static final String KEY_QUESTION = "question";
     public static final String KEY_A = "A";
     public static final String KEY_B = "B";

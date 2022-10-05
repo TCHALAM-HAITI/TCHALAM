@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mypath.tchalam.R;
-import com.mypath.tchalam.fragments.QuestionFragment;
+import com.mypath.tchalam.fragments.QuizFragment;
 import com.mypath.tchalam.models.Subject;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
 
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,QuestionFragment.newInstance(subject.getSubject())).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, QuizFragment.newInstance(subject.getSubject())).addToBackStack(null).commit();
 
             }
         });

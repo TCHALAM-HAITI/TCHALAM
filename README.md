@@ -113,7 +113,7 @@ Model: Quiz
 | ObjectId  | String   | Unique id for Quiz                             |
 | createdAt | Datetime | date when post is created (default field)      |
 | updatedAt | Datetime | date when post is last updated (default field) |
-| question  | String   | question about a subject                       |
+| quiz  | String   | quiz about a subject                       |
 | A         | String   | option answer 1                                |
 | B         | String   | option answer 2                                |
 | C         | String   | option answer 3                                |
