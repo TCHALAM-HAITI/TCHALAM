@@ -26,4 +26,6 @@
     <string name="option_c">option C</string>
     <string name="option_d">option D</string>
     <string name="TCHALAM">TCHALAM</string>
+    <string name="email">Saisir votre email</string>
+    <string name="mot_de_passe">Mot de passe</string>
 </resources>

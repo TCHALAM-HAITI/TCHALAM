@@ -3,48 +3,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tchalam"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bgactivity"
     tools:context=".SignUpActivity">
 
-    <TextView
-        android:id="@+id/tvAppname"
+    <View
+        android:id="@+id/vHead"
+        android:layout_width="wrap_content"
+        android:layout_height="235dp"
+        android:background="@drawable/headwave" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/book" />
+
+    <LinearLayout
+        android:id="@+id/ltextsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:gravity="center_horizontal"
-        android:text="@string/tchalam"
-        android:textColor="@color/purple_700"
-        android:textSize="34sp"
-        android:textStyle="bold" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/tvAppname"
+        android:layout_below="@id/imageView2"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Creation Compte"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            />
         <EditText
             android:id="@+id/etLastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/formedittext"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            android:padding="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/name"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lastname"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            />
+
         <EditText
             android:id="@+id/etFirstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/formedittext"
             android:layout_below="@id/etLastname"
+            android:padding="10dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -54,12 +90,21 @@
             android:hint="@string/lastname"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adresse Email"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/formedittext"
             android:layout_below="@id/etFirstname"
+            android:padding="10dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -70,13 +115,23 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mot_de_passe"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            />
+
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/formedittext"
             android:layout_below="@id/etEmail"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:autofillHints=""
@@ -86,15 +141,20 @@
             android:minHeight="48dp"
             tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-        <Button
-            android:id="@+id/btSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/etPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:text="@string/cr_er" />
 
-    </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btSignUp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ltextsignup"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bgbutton"
+        android:text="@string/cr_er"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
