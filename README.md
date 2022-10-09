@@ -78,6 +78,10 @@ TCHALAM is a preparation application for graduating students to better address u
 
 ### [BONUS] Digital Wireframes & Mockups
 
+<p>
+<img src="https://i.imgur.com/4ih0QwT.png">
+</p>
+
 ### [BONUS] Interactive Prototype
 
 ## Schema 
