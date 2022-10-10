@@ -26,7 +26,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class SubjectFragment extends Fragment {
-    public static final String TAG = "QuizFragment";
+    public static final String TAG = "SubjectFragment";
 
     private List<Subject> allSubject;
     private SubjectAdapter adapter;

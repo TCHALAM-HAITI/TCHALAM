@@ -29,6 +29,7 @@ import com.parse.ParseQuery;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,7 +43,7 @@ public class QuizFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    public static final String TAG = "QuestionFragment";
+    public static final String TAG = "QuizFragment";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -55,6 +56,8 @@ public class QuizFragment extends Fragment {
     private List<Quiz> allQuiz;
     private QuizAdapter adapter;
     private int quesID;
+    private int score;
+    private ArrayList<List<String>> myArray;
 
 
     public QuizFragment() {
@@ -87,6 +90,7 @@ public class QuizFragment extends Fragment {
         }
 
         quesID = 0;
+        score = 0;
         TextView tvSubjectName = view.findViewById(R.id.tvSubject_Name);
         bt_prev = view.findViewById(R.id.bt_prev);
         bt_next = view.findViewById(R.id.bt_next);
@@ -99,13 +103,14 @@ public class QuizFragment extends Fragment {
         if (quesID == 0)
             bt_next.setVisibility(View.VISIBLE);
 
-
         tvSubjectName.setText(mParam1);
 
         tvQuestionID = view.findViewById(R.id.tvQuestionID);
         rvQuestion = view.findViewById(R.id.rvQuestion);
 
         allQuiz = new ArrayList<>();
+        myArray = new ArrayList<>();
+
 
         adapter = new QuizAdapter(allQuiz);
 
@@ -124,7 +129,25 @@ public class QuizFragment extends Fragment {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick Next: "+quesID);
+                int idRep = adapter.getOption_select();
+//                Log.i(TAG, "onClick Next: "+quesID);
+//                Log.i(TAG, "Select option: "+idRep);
+//                Log.i(TAG, "Question : "+allQuiz.get(quesID).getQuestion()+" Rep Correct :"+allQuiz.get(quesID).getAnswer());
+
+//                List<String> reponse = new ArrayList<>();
+//                reponse.add(String.valueOf(quesID));
+//                reponse.add(String.valueOf(idRep));
+
+                if(allQuiz.get(quesID).getAnswer()== idRep)
+                    score++;
+
+//                myArray.add(Arrays.asList(String.valueOf(quesID), String.valueOf(idRep)));
+//
+//
+//                Log.i(TAG, "Array of " + quesID + " : " + myArray.get(quesID));
+//                Log.i(TAG, "Array " + myArray);
+
+
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
                     bt_next.setVisibility(View.VISIBLE);
@@ -145,7 +168,7 @@ public class QuizFragment extends Fragment {
         bt_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick Prev: "+quesID);
+                Log.i(TAG, "onClick Prev: " + quesID);
 
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
@@ -169,8 +192,13 @@ public class QuizFragment extends Fragment {
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int idRep = adapter.getOption_select();
+
+                if(allQuiz.get(quesID).getAnswer()== idRep)
+                    score++;
+
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, new ScoreFragment()).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,ScoreFragment.newInstance(String.valueOf(score))).addToBackStack(null).commit();
 
             }
         });

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     private final List<Quiz> quizzes;
+    private int option_select=0;
 
     public QuizAdapter(List<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -32,7 +33,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Quiz quiz = quizzes.get(position);
-        int answer = quiz.getAnswer();
+        option_select = 0;
 
         holder.tvQuestion.setText(quiz.getQuestion());
         holder.btOptionA.setText(quiz.getOptionA());
@@ -47,6 +48,9 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
                 holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
                 holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
                 holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+
+                int option_select = 1;
+                setOption_select(option_select);
             }
         });
         holder.btOptionB.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +60,9 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
                 holder.btOptionB.setBackgroundResource(R.drawable.selected_btn);
                 holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
                 holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+
+                int option_select = 2;
+                setOption_select(option_select);
             }
         });
         holder.btOptionC.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +73,8 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
                 holder.btOptionC.setBackgroundResource(R.drawable.selected_btn);
                 holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
 
-
+                int option_select = 3;
+                setOption_select(option_select);
             }
         });
 
@@ -78,8 +86,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
                 holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
                 holder.btOptionD.setBackgroundResource(R.drawable.selected_btn);
 
+                int option_select = 4;
+                setOption_select(option_select);
             }
         });
+    }
+
+    private void setOption_select(int option_select) {
+        this.option_select = option_select;
+    }
+
+    public int getOption_select()
+    {
+        return this.option_select;
     }
 
     @Override
