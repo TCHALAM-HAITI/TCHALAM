@@ -129,24 +129,6 @@ public class QuizFragment extends Fragment {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int idRep = adapter.getOption_select();
-//                Log.i(TAG, "onClick Next: "+quesID);
-//                Log.i(TAG, "Select option: "+idRep);
-//                Log.i(TAG, "Question : "+allQuiz.get(quesID).getQuestion()+" Rep Correct :"+allQuiz.get(quesID).getAnswer());
-
-//                List<String> reponse = new ArrayList<>();
-//                reponse.add(String.valueOf(quesID));
-//                reponse.add(String.valueOf(idRep));
-
-                if(allQuiz.get(quesID).getAnswer()== idRep)
-                    score++;
-
-//                myArray.add(Arrays.asList(String.valueOf(quesID), String.valueOf(idRep)));
-//
-//
-//                Log.i(TAG, "Array of " + quesID + " : " + myArray.get(quesID));
-//                Log.i(TAG, "Array " + myArray);
-
 
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
@@ -192,10 +174,6 @@ public class QuizFragment extends Fragment {
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int idRep = adapter.getOption_select();
-
-                if(allQuiz.get(quesID).getAnswer()== idRep)
-                    score++;
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,ScoreFragment.newInstance(String.valueOf(score))).addToBackStack(null).commit();

@@ -17,7 +17,6 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     private final List<Quiz> quizzes;
-    private int option_select=0;
 
     public QuizAdapter(List<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -33,7 +32,8 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Quiz quiz = quizzes.get(position);
-        option_select = 0;
+
+        int questID = position;
 
         holder.tvQuestion.setText(quiz.getQuestion());
         holder.btOptionA.setText(quiz.getOptionA());
@@ -44,61 +44,62 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         holder.btOptionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.btOptionA.setBackgroundResource(R.drawable.selected_btn);
-                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionA.setBackgroundResource(R.drawable.selected_btn);
+//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//
+//                int option_select = 1;
+//                setOption_select(option_select);
 
-                int option_select = 1;
-                setOption_select(option_select);
+                holder.selectOption(holder.btOptionA, 1);
+
+
             }
         });
         holder.btOptionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionB.setBackgroundResource(R.drawable.selected_btn);
-                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionB.setBackgroundResource(R.drawable.selected_btn);
+//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//
+//                int option_select = 2;
+//                setOption_select(option_select);
 
-                int option_select = 2;
-                setOption_select(option_select);
+                holder.selectOption(holder.btOptionB, 2);
             }
         });
         holder.btOptionC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionC.setBackgroundResource(R.drawable.selected_btn);
-                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionC.setBackgroundResource(R.drawable.selected_btn);
+//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+//
+//                int option_select = 3;
+//                setOption_select(option_select);
 
-                int option_select = 3;
-                setOption_select(option_select);
+                holder.selectOption(holder.btOptionC, 3);
             }
         });
 
         holder.btOptionD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-                holder.btOptionD.setBackgroundResource(R.drawable.selected_btn);
+//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
+//                holder.btOptionD.setBackgroundResource(R.drawable.selected_btn);
+//
+//                int option_select = 4;
+//                setOption_select(option_select);
 
-                int option_select = 4;
-                setOption_select(option_select);
+                holder.selectOption(holder.btOptionD, 4);
             }
         });
-    }
-
-    private void setOption_select(int option_select) {
-        this.option_select = option_select;
-    }
-
-    public int getOption_select()
-    {
-        return this.option_select;
     }
 
     @Override
@@ -112,6 +113,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         Button btOptionB;
         Button btOptionC;
         Button btOptionD;
+        Button btprev_select;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,6 +123,32 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
             btOptionB = itemView.findViewById(R.id.optionB);
             btOptionC = itemView.findViewById(R.id.optionC);
             btOptionD = itemView.findViewById(R.id.optionD);
+
+            btprev_select = null;
+        }
+
+        private void selectOption(Button btn, int op_number) {
+            if (btprev_select == null) {
+                btn.setBackgroundResource(R.drawable.selected_btn);
+
+                //save Answer
+
+
+                btprev_select = btn;
+            } else if (btprev_select.getId() == btn.getId()) {
+                btn.setBackgroundResource(R.drawable.unselected_btn);
+
+                //save Answer
+
+                btprev_select = null;
+            } else {
+                btprev_select.setBackgroundResource(R.drawable.unselected_btn);
+                btn.setBackgroundResource(R.drawable.selected_btn);
+
+                // save Answer
+
+                btprev_select = btn;
+            }
         }
     }
 }
