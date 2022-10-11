@@ -17,13 +17,13 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     private final List<Quiz> quizzes;
-    private  int option_select=-1;
+    private int option_select = -1;
 
-    public  int getOption_select() {
+    public int getOption_select() {
         return option_select;
     }
 
-    public  void setOption_select(int option_select) {
+    public void setOption_select(int option_select) {
         this.option_select = option_select;
     }
 
@@ -43,7 +43,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         Quiz quiz = quizzes.get(position);
 
         int questID = position;
-        option_select=-1;
+        option_select = -1;
 
         holder.tvQuestion.setText(quiz.getQuestion());
         holder.btOptionA.setText(quiz.getOptionA());
@@ -51,18 +51,16 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         holder.btOptionC.setText(quiz.getOptionC());
         holder.btOptionD.setText(quiz.getOptionD());
 
+        holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
+        holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
+        holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
+        holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
+
         holder.btOptionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                holder.btOptionA.setBackgroundResource(R.drawable.selected_btn);
-//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
-//
-//                int option_select = 1;
-//                setOption_select(option_select);
 
-                holder.selectOption(holder.btOptionA, 1);
+                setOption_select(holder.selectOption(holder.btOptionA, 1));
 
 
             }
@@ -70,45 +68,23 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         holder.btOptionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionB.setBackgroundResource(R.drawable.selected_btn);
-//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
-//
-//                int option_select = 2;
-//                setOption_select(option_select);
 
-                holder.selectOption(holder.btOptionB, 2);
+                setOption_select(holder.selectOption(holder.btOptionB, 2));
             }
         });
         holder.btOptionC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionC.setBackgroundResource(R.drawable.selected_btn);
-//                holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
-//
-//                int option_select = 3;
-//                setOption_select(option_select);
 
-                holder.selectOption(holder.btOptionC, 3);
+                setOption_select(holder.selectOption(holder.btOptionC, 3));
             }
         });
 
         holder.btOptionD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                holder.btOptionA.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionB.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
-//                holder.btOptionD.setBackgroundResource(R.drawable.selected_btn);
-//
-//                int option_select = 4;
-//                setOption_select(option_select);
 
-                setOption_select(4);
-                holder.selectOption(holder.btOptionD, 4);
+                setOption_select(holder.selectOption(holder.btOptionD, 4));
             }
         });
     }
@@ -138,30 +114,23 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
             btprev_select = null;
         }
 
-        private void selectOption(Button btn, int op_number) {
+        private int selectOption(Button btn, int op_number) {
             if (btprev_select == null) {
                 btn.setBackgroundResource(R.drawable.selected_btn);
 
-                //save Answer
-
-//                option_select = op_number;
-
                 btprev_select = btn;
+                return op_number;
             } else if (btprev_select.getId() == btn.getId()) {
                 btn.setBackgroundResource(R.drawable.unselected_btn);
 
-                //save Answer
-                op_number = -1;
-
                 btprev_select = null;
+                return -1;
             } else {
                 btprev_select.setBackgroundResource(R.drawable.unselected_btn);
                 btn.setBackgroundResource(R.drawable.selected_btn);
 
-                // save Answer
-//                option_select = op_number;
-
                 btprev_select = btn;
+                return op_number;
             }
         }
     }

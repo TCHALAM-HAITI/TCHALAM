@@ -130,6 +130,14 @@ public class QuizFragment extends Fragment {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int select_answer = adapter.getOption_select();
+                Quiz quiz = allQuiz.get(quesID);
+
+                if (quiz.getAnswer() == select_answer) {
+                    Log.i(TAG, "onClick: " + select_answer);
+                    total_answer += 1;
+                }
+
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
                     bt_next.setVisibility(View.VISIBLE);
@@ -150,8 +158,7 @@ public class QuizFragment extends Fragment {
         bt_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick Prev: " + quesID);
-
+                total_answer -= 1;
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
                     bt_next.setVisibility(View.VISIBLE);
@@ -174,9 +181,16 @@ public class QuizFragment extends Fragment {
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int select_answer = adapter.getOption_select();
+                Quiz quiz = allQuiz.get(quesID);
+
+                if (quiz.getAnswer() == select_answer) {
+                    Log.i(TAG, "onClick: " + select_answer);
+                    total_answer += 1;
+                }
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,ScoreFragment.newInstance(String.valueOf(total_answer))).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, ScoreFragment.newInstance(String.valueOf(total_answer),String.valueOf(allQuiz.size()))).addToBackStack(null).commit();
 
             }
         });
@@ -196,7 +210,7 @@ public class QuizFragment extends Fragment {
                 assert view != null;
 
                 quesID = Objects.requireNonNull(recyclerView.getLayoutManager()).getPosition(view);
-                Log.i(TAG, "onScrollStateChanged: " + quesID);
+//                Log.i(TAG, "onScrollStateChanged: " + quesID);
 
                 tvQuestionID.setText(quesID + 1 + "/" + allQuiz.size());
 
