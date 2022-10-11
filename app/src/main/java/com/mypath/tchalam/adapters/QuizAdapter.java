@@ -17,6 +17,15 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     private final List<Quiz> quizzes;
+    private  int option_select=-1;
+
+    public  int getOption_select() {
+        return option_select;
+    }
+
+    public  void setOption_select(int option_select) {
+        this.option_select = option_select;
+    }
 
     public QuizAdapter(List<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -34,6 +43,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         Quiz quiz = quizzes.get(position);
 
         int questID = position;
+        option_select=-1;
 
         holder.tvQuestion.setText(quiz.getQuestion());
         holder.btOptionA.setText(quiz.getOptionA());
@@ -97,6 +107,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 //                int option_select = 4;
 //                setOption_select(option_select);
 
+                setOption_select(4);
                 holder.selectOption(holder.btOptionD, 4);
             }
         });
@@ -133,12 +144,14 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 
                 //save Answer
 
+//                option_select = op_number;
 
                 btprev_select = btn;
             } else if (btprev_select.getId() == btn.getId()) {
                 btn.setBackgroundResource(R.drawable.unselected_btn);
 
                 //save Answer
+                op_number = -1;
 
                 btprev_select = null;
             } else {
@@ -146,6 +159,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
                 btn.setBackgroundResource(R.drawable.selected_btn);
 
                 // save Answer
+//                option_select = op_number;
 
                 btprev_select = btn;
             }

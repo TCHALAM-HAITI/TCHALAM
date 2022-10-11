@@ -56,7 +56,7 @@ public class QuizFragment extends Fragment {
     private List<Quiz> allQuiz;
     private QuizAdapter adapter;
     private int quesID;
-    private int score;
+    private int total_answer;
     private ArrayList<List<String>> myArray;
 
 
@@ -90,7 +90,8 @@ public class QuizFragment extends Fragment {
         }
 
         quesID = 0;
-        score = 0;
+        total_answer = 0;
+
         TextView tvSubjectName = view.findViewById(R.id.tvSubject_Name);
         bt_prev = view.findViewById(R.id.bt_prev);
         bt_next = view.findViewById(R.id.bt_next);
@@ -129,7 +130,6 @@ public class QuizFragment extends Fragment {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (quesID == 0) {
                     bt_submit.setVisibility(View.INVISIBLE);
                     bt_next.setVisibility(View.VISIBLE);
@@ -176,7 +176,7 @@ public class QuizFragment extends Fragment {
             public void onClick(View view) {
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,ScoreFragment.newInstance(String.valueOf(score))).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,ScoreFragment.newInstance(String.valueOf(total_answer))).addToBackStack(null).commit();
 
             }
         });
