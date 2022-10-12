@@ -18,14 +18,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.adapters.QuizAdapter;
+import com.mypath.tchalam.models.Answer;
 import com.mypath.tchalam.models.Quiz;
 import com.mypath.tchalam.models.Subject;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 
 import java.util.ArrayList;
@@ -136,6 +141,9 @@ public class QuizFragment extends Fragment {
                 if (quiz.getAnswer() == select_answer) {
                     Log.i(TAG, "onClick: " + select_answer);
                     total_answer += 1;
+                    ParseUser user = ParseUser.getCurrentUser();
+                    int score = 1;
+                    queryAnswer(quiz, user, score);
                 }
 
                 if (quesID == 0) {
@@ -187,13 +195,53 @@ public class QuizFragment extends Fragment {
                 if (quiz.getAnswer() == select_answer) {
                     Log.i(TAG, "onClick: " + select_answer);
                     total_answer += 1;
+
+                    ParseUser user = ParseUser.getCurrentUser();
+                    int score = 1;
+                    queryAnswer(quiz, user, score);
                 }
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, ScoreFragment.newInstance(String.valueOf(total_answer),String.valueOf(allQuiz.size()))).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, ScoreFragment.newInstance(String.valueOf(total_answer), String.valueOf(allQuiz.size()))).addToBackStack(null).commit();
 
             }
         });
+    }
+
+    private void queryAnswer(Quiz quiz, ParseUser user, int score) {
+        ParseQuery<Answer> queryAnswer = ParseQuery.getQuery(Answer.class);
+        queryAnswer.whereEqualTo("quiz", quiz);
+        queryAnswer.whereEqualTo("user", user);
+
+        queryAnswer.findInBackground(new FindCallback<Answer>() {
+            @Override
+            public void done(List<Answer> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Erreur", e);
+                    return;
+                }
+
+                if (objects.size() == 0) {
+                    Answer answer = new Answer();
+
+                    answer.setQuiz(quiz);
+                    answer.setUser(user);
+                    answer.setScore(score);
+
+                    answer.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.i(TAG, "Erreur de sauvegarde");
+                            }
+                            Log.i(TAG, "Answer Sauvegarder");
+                        }
+                    });
+                }
+            }
+        });
+
+
     }
 
     private void setSnapHelper() {

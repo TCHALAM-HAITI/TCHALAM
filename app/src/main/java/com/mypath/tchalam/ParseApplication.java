@@ -2,6 +2,7 @@ package com.mypath.tchalam;
 
 import android.app.Application;
 
+import com.mypath.tchalam.models.Answer;
 import com.mypath.tchalam.models.Quiz;
 import com.mypath.tchalam.models.Subject;
 import com.parse.Parse;
@@ -15,6 +16,7 @@ public class ParseApplication extends Application {
 
         ParseObject.registerSubclass(Subject.class);
         ParseObject.registerSubclass(Quiz.class);
+        ParseObject.registerSubclass(Answer.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("2vof0vJyL1LraQdME0iL9bzbTF53J5jfTup95DgI")
