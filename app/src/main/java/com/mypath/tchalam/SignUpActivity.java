@@ -1,6 +1,7 @@
 package com.mypath.tchalam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.CountCallback;
@@ -26,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private Button btSignUp;
+    private TextView tvConnect;
 
 
     @Override
@@ -33,11 +36,29 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        //add icon back with toolbar
+        Toolbar myToolba=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolba);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //block inflate
         etFirstname = findViewById(R.id.etFirstname);
         etLastname = findViewById(R.id.etLastname);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btSignUp = findViewById(R.id.btSignUp);
+        tvConnect=findViewById(R.id.tvConnect);
+
+        //Method to get on page Login
+        tvConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,4 +28,6 @@
     <string name="TCHALAM">TCHALAM</string>
     <string name="email">Saisir votre email</string>
     <string name="mot_de_passe">Mot de passe</string>
+    <string name="continuer">Continuer</string>
+    <string name="desctchalam">Tchalam est une application de preparation des etudiant finissant pour mieux aborder les concours d admission a l Universite publique ou privee.</string>
 </resources>

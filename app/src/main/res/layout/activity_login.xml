@@ -12,6 +12,7 @@
         android:id="@+id/vHead"
         android:layout_width="wrap_content"
         android:layout_height="180dp"
+        app:layout_scrollFlags="scroll|enterAlways"
         android:background="@drawable/headwave" />
 
     <ImageView
