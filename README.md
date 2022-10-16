@@ -154,4 +154,4 @@ Model: Answer
 
 Here's a walkthrough of implemented user stories:
 	
-<img src='XRecorder_03102022_190919%20(1).gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
