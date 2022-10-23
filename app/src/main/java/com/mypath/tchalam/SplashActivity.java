@@ -2,10 +2,12 @@ package com.mypath.tchalam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
     Handler handler;
@@ -16,13 +18,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         handler=new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent=new Intent(SplashActivity.this, IntroActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        handler.postDelayed(() -> {
+            Intent intent=new Intent(SplashActivity.this, IntroActivity.class);
+            startActivity(intent);
+            finish();
         },3000);
     }
 }

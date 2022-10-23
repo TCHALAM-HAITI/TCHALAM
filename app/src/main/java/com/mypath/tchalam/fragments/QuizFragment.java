@@ -18,23 +18,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.mypath.tchalam.R;
 import com.mypath.tchalam.adapters.QuizAdapter;
 import com.mypath.tchalam.models.Answer;
 import com.mypath.tchalam.models.Quiz;
 import com.mypath.tchalam.models.Subject;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,8 +57,6 @@ public class QuizFragment extends Fragment {
     private QuizAdapter adapter;
     private int quesID;
     private int total_answer;
-    private ArrayList<List<String>> myArray;
-
 
     public QuizFragment() {
         // Required empty public constructor
@@ -115,8 +108,6 @@ public class QuizFragment extends Fragment {
         rvQuestion = view.findViewById(R.id.rvQuestion);
 
         allQuiz = new ArrayList<>();
-        myArray = new ArrayList<>();
-
 
         adapter = new QuizAdapter(allQuiz);
 
@@ -132,79 +123,70 @@ public class QuizFragment extends Fragment {
     }
 
     private void setClickListener() {
-        bt_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int select_answer = adapter.getOption_select();
-                Quiz quiz = allQuiz.get(quesID);
+        bt_next.setOnClickListener(view -> {
+            int select_answer = adapter.getOption_select();
+            Quiz quiz = allQuiz.get(quesID);
 
-                if (quiz.getAnswer() == select_answer) {
-                    Log.i(TAG, "onClick: " + select_answer);
-                    total_answer += 1;
-                    ParseUser user = ParseUser.getCurrentUser();
-                    int score = 1;
-                    queryAnswer(quiz, user, score);
-                }
-
-                if (quesID == 0) {
-                    bt_submit.setVisibility(View.INVISIBLE);
-                    bt_next.setVisibility(View.VISIBLE);
-                    bt_prev.setVisibility(View.INVISIBLE);
-                } else if (quesID == allQuiz.size() - 1) {
-                    bt_submit.setVisibility(View.VISIBLE);
-                    bt_next.setVisibility(View.INVISIBLE);
-                    bt_prev.setVisibility(View.VISIBLE);
-                } else {
-                    bt_submit.setVisibility(View.INVISIBLE);
-                    bt_next.setVisibility(View.VISIBLE);
-                    bt_prev.setVisibility(View.VISIBLE);
-                }
-                rvQuestion.smoothScrollToPosition(quesID + 1);
+            if (quiz.getAnswer() == select_answer) {
+                Log.i(TAG, "onClick: " + select_answer);
+                total_answer += 1;
+                ParseUser user = ParseUser.getCurrentUser();
+                int score = 1;
+                queryAnswer(quiz, user, score);
             }
+
+            if (quesID == 0) {
+                bt_submit.setVisibility(View.INVISIBLE);
+                bt_next.setVisibility(View.VISIBLE);
+                bt_prev.setVisibility(View.INVISIBLE);
+            } else if (quesID == allQuiz.size() - 1) {
+                bt_submit.setVisibility(View.VISIBLE);
+                bt_next.setVisibility(View.INVISIBLE);
+                bt_prev.setVisibility(View.VISIBLE);
+            } else {
+                bt_submit.setVisibility(View.INVISIBLE);
+                bt_next.setVisibility(View.VISIBLE);
+                bt_prev.setVisibility(View.VISIBLE);
+            }
+            rvQuestion.smoothScrollToPosition(quesID + 1);
         });
 
-        bt_prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                total_answer -= 1;
-                if (quesID == 0) {
-                    bt_submit.setVisibility(View.INVISIBLE);
-                    bt_next.setVisibility(View.VISIBLE);
-                    bt_prev.setVisibility(View.INVISIBLE);
-                } else if (quesID == allQuiz.size() - 1) {
-                    bt_submit.setVisibility(View.VISIBLE);
-                    bt_next.setVisibility(View.INVISIBLE);
-                    bt_prev.setVisibility(View.VISIBLE);
-                } else {
-                    bt_submit.setVisibility(View.INVISIBLE);
-                    bt_next.setVisibility(View.VISIBLE);
-                    bt_prev.setVisibility(View.VISIBLE);
-                }
-
-                if (quesID > 0)
-                    rvQuestion.smoothScrollToPosition(quesID - 1);
+        bt_prev.setOnClickListener(view -> {
+            total_answer -= 1;
+            if (quesID == 0) {
+                bt_submit.setVisibility(View.INVISIBLE);
+                bt_next.setVisibility(View.VISIBLE);
+                bt_prev.setVisibility(View.INVISIBLE);
+            } else if (quesID == allQuiz.size() - 1) {
+                bt_submit.setVisibility(View.VISIBLE);
+                bt_next.setVisibility(View.INVISIBLE);
+                bt_prev.setVisibility(View.VISIBLE);
+            } else {
+                bt_submit.setVisibility(View.INVISIBLE);
+                bt_next.setVisibility(View.VISIBLE);
+                bt_prev.setVisibility(View.VISIBLE);
             }
+
+            if (quesID > 0)
+                rvQuestion.smoothScrollToPosition(quesID - 1);
         });
 
-        bt_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int select_answer = adapter.getOption_select();
-                Quiz quiz = allQuiz.get(quesID);
+        bt_submit.setOnClickListener(view -> {
+            int select_answer = adapter.getOption_select();
+            Quiz quiz = allQuiz.get(quesID);
 
-                if (quiz.getAnswer() == select_answer) {
-                    Log.i(TAG, "onClick: " + select_answer);
-                    total_answer += 1;
+            if (quiz.getAnswer() == select_answer) {
+                Log.i(TAG, "onClick: " + select_answer);
+                total_answer += 1;
 
-                    ParseUser user = ParseUser.getCurrentUser();
-                    int score = 1;
-                    queryAnswer(quiz, user, score);
-                }
-
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, ScoreFragment.newInstance(String.valueOf(total_answer), String.valueOf(allQuiz.size()))).addToBackStack(null).commit();
-
+                ParseUser user = ParseUser.getCurrentUser();
+                int score = 1;
+                queryAnswer(quiz, user, score);
             }
+
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, ScoreFragment.newInstance(String.valueOf(total_answer), String.valueOf(allQuiz.size()))).addToBackStack(null).commit();
+
         });
     }
 
@@ -213,31 +195,25 @@ public class QuizFragment extends Fragment {
         queryAnswer.whereEqualTo("quiz", quiz);
         queryAnswer.whereEqualTo("user", user);
 
-        queryAnswer.findInBackground(new FindCallback<Answer>() {
-            @Override
-            public void done(List<Answer> objects, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Erreur", e);
-                    return;
-                }
+        queryAnswer.findInBackground((objects, e) -> {
+            if (e != null) {
+                Log.e(TAG, "Erreur", e);
+                return;
+            }
 
-                if (objects.size() == 0) {
-                    Answer answer = new Answer();
+            if (objects.size() == 0) {
+                Answer answer = new Answer();
 
-                    answer.setQuiz(quiz);
-                    answer.setUser(user);
-                    answer.setScore(score);
+                answer.setQuiz(quiz);
+                answer.setUser(user);
+                answer.setScore(score);
 
-                    answer.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Log.i(TAG, "Erreur de sauvegarde");
-                            }
-                            Log.i(TAG, "Answer Sauvegarder");
-                        }
-                    });
-                }
+                answer.saveInBackground(e1 -> {
+                    if (e1 != null) {
+                        Log.i(TAG, "Erreur de sauvegarde");
+                    }
+                    Log.i(TAG, "Answer Sauvegarder");
+                });
             }
         });
 
@@ -284,6 +260,7 @@ public class QuizFragment extends Fragment {
         });
     }
 
+    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     private void queryQuestion() {
         ParseQuery<Subject> subjectQuery = ParseQuery.getQuery(Subject.class);
         subjectQuery.whereEqualTo("Subject", mParam1);
@@ -293,21 +270,17 @@ public class QuizFragment extends Fragment {
         questionQuery.whereMatchesQuery("subject", subjectQuery);
         questionQuery.include(Quiz.KEY_SUBJECT);
 
-        questionQuery.findInBackground(new FindCallback<Quiz>() {
-            @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
-            @Override
-            public void done(List<Quiz> quizzes, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting Quiz", e);
-                    return;
-                }
-                for (Quiz quiz : quizzes) {
-                    Log.i(TAG, "Quiz: " + quiz.getQuestion());
-                }
-                tvQuestionID.setText(quesID + 1 + "/" + quizzes.size());
-                allQuiz.addAll(quizzes);
-                adapter.notifyDataSetChanged();
+        questionQuery.findInBackground((quizzes, e) -> {
+            if (e != null) {
+                Log.e(TAG, "Issue with getting Quiz", e);
+                return;
             }
+            for (Quiz quiz : quizzes) {
+                Log.i(TAG, "Quiz: " + quiz.getQuestion());
+            }
+            tvQuestionID.setText(quesID + 1 + "/" + quizzes.size());
+            allQuiz.addAll(quizzes);
+            adapter.notifyDataSetChanged();
         });
     }
 

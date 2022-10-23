@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="5dp"
+        android:contentDescription="@string/todo"
         app:srcCompat="@drawable/book" />
 
 
@@ -34,7 +35,6 @@
         android:id="@+id/ltext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vHead"
         android:layout_marginTop="10dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
@@ -45,60 +45,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Connexion"
+            android:text="@string/connexion"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adresse Email"
-            android:textSize="20sp"
-            android:layout_marginBottom="5dp"
             android:layout_marginStart="10dp"
-            />
+            android:layout_marginBottom="5dp"
+            android:text="@string/adresse_email"
+            android:textSize="20sp" />
+
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:ems="10"
             android:background="@drawable/formedittext"
+            android:ems="10"
             android:hint="@string/Ex"
             android:inputType="textEmailAddress"
-            tools:ignore="TextContrastCheck" />
+            android:minHeight="48dp"
+            android:padding="10dp"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mot de passe"
-            android:textSize="20sp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
-            />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/mot_de_passe"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:ems="10"
             android:background="@drawable/formedittext"
+            android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            tools:ignore="TextContrastCheck" />
+            android:minHeight="48dp"
+            android:padding="10dp"
+            tools:ignore="TextContrastCheck"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/btLogin"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ltext"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
             android:layout_marginStart="120dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bgbutton"
             android:text="@string/login"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +112,6 @@
                 android:id="@+id/tvText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btLogin"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/if_you_don_t_have_an_account"
@@ -117,10 +120,8 @@
             android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btLogin"
             android:layout_marginStart="10dp"
             android:layout_marginTop="40dp"
-            android:layout_toEndOf="@+id/tvText"
             android:text="@string/sing_up"
             android:textStyle="bold"
             android:textColor="@color/blueLight"

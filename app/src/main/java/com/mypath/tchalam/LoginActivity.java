@@ -5,15 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.parse.GetCallback;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -22,8 +17,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
     private EditText etPassword;
-    private Button btLogin;
-    private TextView tvSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,36 +29,28 @@ public class LoginActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        btLogin = findViewById(R.id.btLogin);
-        tvSignUp = findViewById(R.id.tvSignUp);
+        Button btLogin = findViewById(R.id.btLogin);
+        TextView tvSignUp = findViewById(R.id.tvSignUp);
 
 
-        btLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = etEmail.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
+        btLogin.setOnClickListener(view -> {
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
 
-                if (email.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Email Required", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Password Required", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                LoginUser(email, password);
+            if (email.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Email Required", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Password Required", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            LoginUser(email, password);
         });
 
-        tvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignUpUser();
-            }
-        });
+        tvSignUp.setOnClickListener(view -> SignUpUser());
     }
 
     private void SignUpUser() {
@@ -79,28 +64,22 @@ public class LoginActivity extends AppCompatActivity {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("email", email);
 
-        query.getFirstInBackground(new GetCallback<ParseUser>() {
-            @Override
-            public void done(ParseUser object, ParseException e1) {
-                if (e1 != null) {
+        query.getFirstInBackground((object, e1) -> {
+            if (e1 != null) {
 //                    Toast.makeText(LoginActivity.this, "Erreur " + e1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "done: "+e1.getMessage(),e1);
-                    return;
-                }
-                String username = object.getUsername();
-
-                ParseUser.logInInBackground(username, password, new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException e2) {
-                        if (user != null) {
-                            goMainActivity();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Échec de la connexion", Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "Échec de la connexion: " + e2.getMessage(), e2);
-                        }
-                    }
-                });
+                Log.e(TAG, "done: "+e1.getMessage(),e1);
+                return;
             }
+            String username = object.getUsername();
+
+            ParseUser.logInInBackground(username, password, (user, e2) -> {
+                if (user != null) {
+                    goMainActivity();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Échec de la connexion", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Échec de la connexion: " + e2.getMessage(), e2);
+                }
+            });
         });
     }
 

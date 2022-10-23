@@ -42,7 +42,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Quiz quiz = quizzes.get(position);
 
-        int questID = position;
         option_select = -1;
 
         holder.tvQuestion.setText(quiz.getQuestion());
@@ -56,37 +55,11 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         holder.btOptionC.setBackgroundResource(R.drawable.unselected_btn);
         holder.btOptionD.setBackgroundResource(R.drawable.unselected_btn);
 
-        holder.btOptionA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.btOptionA.setOnClickListener(view -> setOption_select(holder.selectOption(holder.btOptionA, 1)));
+        holder.btOptionB.setOnClickListener(view -> setOption_select(holder.selectOption(holder.btOptionB, 2)));
+        holder.btOptionC.setOnClickListener(view -> setOption_select(holder.selectOption(holder.btOptionC, 3)));
 
-                setOption_select(holder.selectOption(holder.btOptionA, 1));
-
-
-            }
-        });
-        holder.btOptionB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setOption_select(holder.selectOption(holder.btOptionB, 2));
-            }
-        });
-        holder.btOptionC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setOption_select(holder.selectOption(holder.btOptionC, 3));
-            }
-        });
-
-        holder.btOptionD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setOption_select(holder.selectOption(holder.btOptionD, 4));
-            }
-        });
+        holder.btOptionD.setOnClickListener(view -> setOption_select(holder.selectOption(holder.btOptionD, 4)));
     }
 
     @Override

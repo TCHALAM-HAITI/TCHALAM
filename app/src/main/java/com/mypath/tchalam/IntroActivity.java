@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.parse.ParseUser;
 
 public class IntroActivity extends AppCompatActivity {
-private Button btnContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +20,9 @@ private Button btnContinue;
             goMainActivity();
         }
         //inflate
-        btnContinue=findViewById(R.id.btnContinue);
+        Button btnContinue = findViewById(R.id.btnContinue);
 
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GoToLogin();
-            }
-        });
+        btnContinue.setOnClickListener(view -> GoToLogin());
     }
 
     private void goMainActivity() {
