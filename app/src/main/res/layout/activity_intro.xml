@@ -47,10 +47,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="35dp"
-        android:background="@drawable/bgbutton"
+        style="@style/NiceButton"
         android:text="@string/continuer"
         android:textColor="@color/white"
-        android:textSize="17sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

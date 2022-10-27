@@ -149,10 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="116dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/bgbutton"
+                style="@style/NiceButton"
                 android:text="@string/cr_er"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
