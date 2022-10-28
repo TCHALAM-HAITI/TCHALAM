@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        Button btLogin = findViewById(R.id.btLogin);
+        Button btLogin = findViewById(R.id.btmodifier);
         TextView tvSignUp = findViewById(R.id.tvSignUp);
 
 

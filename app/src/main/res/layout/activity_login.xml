@@ -94,7 +94,7 @@
                 tools:ignore="TextContrastCheck" />
 
             <Button
-                android:id="@+id/btLogin"
+                android:id="@+id/btmodifier"
                 style="@style/NiceButton"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"

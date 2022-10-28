@@ -37,4 +37,7 @@
     <string name="creation_compte">Creation Compte</string>
     <string name="adresse_email">Adresse Email</string>
     <string name="connexion">Connexion</string>
+    <string name="firstname">FirstName</string>
+    <string name="votre_score_total">Votre Score Total</string>
+    <string name="name1">Name</string>
 </resources>
