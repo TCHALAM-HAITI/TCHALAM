@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //inflate
         TextView tvFirstName = view.findViewById(R.id.tvFirstName);
         TextView tvLastName = view.findViewById(R.id.tvLastName);
         RelativeLayout lscore = view.findViewById(R.id.Lscore);
@@ -53,6 +54,7 @@ public class ProfileFragment extends Fragment {
             }
         }));
 
+        //call firstname and lastname of current user
         ParseUser user = ParseUser.getCurrentUser();
 
         tvFirstName.setText(user.getString("firstname"));

@@ -32,8 +32,7 @@
     <string name="score">Score</string>
     <string name="score_value">50</string>
 
-    <string name="desctchalam">Tchalam est une application de préparation des étudiants finissant pour mieux aborder les concours d\'admission à l\'Université publique ou privée.
-</string>
+    <string name="desctchalam">Tchalam est une application de préparation des étudiants finissant pour mieux aborder les concours d\'admission à l\'Université Publique ou Privée.</string>
     <string name="creation_compte">Creation Compte</string>
     <string name="adresse_email">Adresse Email</string>
     <string name="connexion">Connexion</string>

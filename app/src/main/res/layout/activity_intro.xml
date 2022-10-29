@@ -19,19 +19,19 @@
         android:textStyle="bold"
         android:fontFamily="sans-serif"
         />
+
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/desctchalam"
         android:layout_below="@id/tvTitle"
-        android:textColor="@color/black"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:textSize="19sp"
-        android:textStyle="bold"
         android:fontFamily="sans-serif"
-        />
+        android:text="@string/desctchalam"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
     <ImageView
         android:id="@+id/ivStudent"
         android:layout_width="wrap_content"
@@ -41,13 +41,13 @@
 
     <Button
         android:id="@+id/btnContinue"
+        style="@style/NiceButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivStudent"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="35dp"
-        style="@style/NiceButton"
+        android:layout_marginTop="25dp"
         android:text="@string/continuer"
         android:textColor="@color/white"
         android:textSize="20sp"
