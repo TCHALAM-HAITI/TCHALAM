@@ -96,7 +96,7 @@ Model: User
 | ObjectId  | String   | Unique id for User account                		|
 | createdAt | Datetime | date when post is created (default field)     	|
 | updatedAt | Datetime | date when post is last updated (default field)	|
-| lastname  | String   | name of the user                          		|
+| lastname  | String   | last name of the user                          		|
 | firstname | String   | first name of the user                    		|
 | email     | String   | email of the user                         		|
 | password  | String   | Password of the user                      		|
