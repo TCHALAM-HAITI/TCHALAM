@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
     private void SignUpUser() {
         Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(i);
-        finish();
     }
 
     private void LoginUser(String email, String password) {
